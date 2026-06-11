@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, useAnimation, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { FaGithub, FaLinkedin, FaNodeJs, FaReact, FaJava, FaPython, FaDocker } from "react-icons/fa";
 import { SiPostgresql, SiGraphql, SiMongodb, SiTailwindcss,  } from "react-icons/si";
-import { Mail, ExternalLink, Code2, Terminal, Server, Star, GraduationCap, Database, Activity, FileText, Layers, BrainCircuit, ShieldCheck, Zap, GitCommit, ArrowRight, Gauge, Cpu } from "lucide-react";
+import { Mail, ExternalLink, Code2, Terminal, Server, Star, GraduationCap, Database, FileText, Layers, BrainCircuit, ShieldCheck, Zap, GitCommit, Cpu } from "lucide-react";
 
 const FallingIcons = () => {
   const icons = [FaNodeJs, FaReact, FaJava, FaPython, FaDocker, SiPostgresql, SiGraphql, SiMongodb, SiTailwindcss];
