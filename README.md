@@ -8,3 +8,5 @@ Built with:
 - **Tailwind CSS** (Custom Glassmorphism & Neon accents)
 - **Framer Motion** (Smooth entry animations & hover states)
 - **Lucide React & React Icons**
+
+
