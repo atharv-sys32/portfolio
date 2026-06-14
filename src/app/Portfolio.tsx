@@ -4,11 +4,14 @@ import { useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { FaGithub, FaLinkedin, FaNodeJs, FaReact, FaJava, FaPython, FaDocker } from "react-icons/fa";
-import { SiPostgresql, SiGraphql, SiMongodb, SiTailwindcss,  } from "react-icons/si";
+import { SiPostgresql, SiGraphql, SiMongodb, SiTailwindcss, SiPytorch, SiTensorflow, SiJupyter, SiPandas, SiScikitlearn, SiKeras, SiOpenai } from "react-icons/si";
+
 import { Mail, ExternalLink, Code2, Terminal, Server, Star, GraduationCap, Database, FileText, Layers, BrainCircuit, ShieldCheck, Zap, GitCommit, Cpu } from "lucide-react";
 
-const FallingIcons = () => {
-  const icons = [FaNodeJs, FaReact, FaJava, FaPython, FaDocker, SiPostgresql, SiGraphql, SiMongodb, SiTailwindcss];
+const FallingIcons = ({ isAI }: { isAI: boolean }) => {
+  const sweIcons = [FaNodeJs, FaReact, FaJava, FaPython, FaDocker, SiPostgresql, SiGraphql, SiMongodb, SiTailwindcss];
+  const aiIcons = [FaPython, SiPytorch, SiTensorflow, SiJupyter, SiPandas, SiScikitlearn, SiKeras, SiOpenai, SiPostgresql, FaDocker];
+  const icons = isAI ? aiIcons : sweIcons;
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
@@ -74,7 +77,7 @@ const AnimatedCounter = ({ from, to }: { from: number; to: number }) => {
   return <span ref={ref}>{count}</span>;
 };
 
-export default function Home() {
+export default function Portfolio({ isAI = false }: { isAI?: boolean }) {
   const fullName = "Atharv Pandey";
 
   const fadeInUp = {
@@ -97,7 +100,7 @@ export default function Home() {
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-[rgb(var(--accent))] opacity-20 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-[rgb(var(--accent-secondary))] opacity-20 blur-[120px] pointer-events-none" />
 
-      <FallingIcons />
+      <FallingIcons isAI={isAI} />
 
       <div className="w-[90vw] max-w-[1400px] mx-auto pt-32 relative z-10">
         {/* HERO SECTION - Removed gap-6 to reduce vertical space */}
@@ -120,7 +123,7 @@ export default function Home() {
 
           <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm font-medium border-white/10 text-gray-300 mb-4">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse shadow-[0_0_10px_#4ade80]" />
-            Full-Stack Software Engineer
+            {isAI ? "AI / ML Engineer" : "Full-Stack Software Engineer"}
           </motion.div>
 
           <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-tight mt-1 min-h-[1.2em] mb-4">
@@ -142,14 +145,14 @@ export default function Home() {
 
           {/* w-full max-w-full to span the text nicely without being restricted to 4 short lines */}
           <motion.p variants={fadeInUp} className="text-lg md:text-xl text-gray-400 w-full max-w-[95%] leading-relaxed mb-8 px-4">
-            CS Undergrad at IIIT Bhopal (9.37 CGPA). I am a Full-Stack Engineer with a heavy emphasis on backend architecture. I thrive on architecting scalable microservices, designing robust databases, and building seamless, high-performance web applications from end to end.
+            {isAI ? "CS Undergrad at IIIT Bhopal (9.37 CGPA). I am an AI/ML Engineer focusing on deep learning, neural networks, and scalable AI infrastructure. I thrive on building end-to-end machine learning pipelines, optimizing models, and bridging the gap between research and production." : "CS Undergrad at IIIT Bhopal (9.37 CGPA). I am a Full-Stack Engineer with a heavy emphasis on backend architecture. I thrive on architecting scalable microservices, designing robust databases, and building seamless, high-performance web applications from end to end."}
           </motion.p>
 
           <motion.div variants={fadeInUp} className="flex flex-wrap justify-center gap-4 mt-2">
             <a href="mailto:atharvpandey245@gmail.com" className="px-6 py-3 rounded-xl bg-white text-black font-bold hover:bg-gray-200 hover:scale-105 transition-all flex items-center gap-2">
               <Mail size={18} /> Get in Touch
             </a>
-            <a href="https://drive.google.com/drive/folders/1kUKwIOUtmzGiYza5mpIwciRVQ9pjOMJX?usp=sharing" target="_blank" rel="noreferrer" className="px-6 py-3 rounded-xl glass hover:bg-white/10 hover:scale-105 transition-all flex items-center gap-2 font-medium border border-white/10">
+            <a href={isAI ? "https://drive.google.com/drive/folders/1d5o9uNyfZmPOHar1kID6Aa3XeeP8UFRr?usp=sharing" : "https://drive.google.com/drive/folders/1kUKwIOUtmzGiYza5mpIwciRVQ9pjOMJX?usp=sharing"} target="_blank" rel="noreferrer" className="px-6 py-3 rounded-xl glass hover:bg-white/10 hover:scale-105 transition-all flex items-center gap-2 font-medium border border-white/10">
               <ExternalLink size={18} /> View Resume
             </a>
             <div className="flex items-center gap-3 ml-2">
@@ -203,7 +206,7 @@ export default function Home() {
             <BrainCircuit className="text-[rgb(var(--accent-secondary))]" /> Engineering DNA
           </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {!isAI ? (<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <motion.div variants={fadeInUp} className="glass-card glass-card-hover border-[rgba(var(--accent),0.2)] hover-glow-accent group">
               <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
                 <Database size={80} />
@@ -237,6 +240,40 @@ export default function Home() {
               </p>
             </motion.div>
           </div>
+) : (<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <motion.div variants={fadeInUp} className="glass-card glass-card-hover border-[rgba(var(--accent),0.2)] hover-glow-accent group">
+              <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                <Database size={80} />
+              </div>
+              <Database className="text-[rgb(var(--accent))] mb-4" size={32} />
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[rgb(var(--accent))] transition-all duration-300">Scalable AI Pipelines</h3>
+              <p className="text-sm text-gray-400 leading-relaxed">
+                Expertise in designing fault-tolerant ETL systems using <strong className="text-white">Kafka & PostgreSQL</strong> for real-time ingestion. Deep understanding of <strong className="text-white">Vector Databases (pgvector)</strong> and large-scale data engineering to support production-ready ML infrastructure.
+              </p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="glass-card glass-card-hover border-yellow-400/20 hover-glow-yellow group">
+              <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                <Zap size={80} />
+              </div>
+              <Zap className="text-yellow-400 mb-4" size={32} />
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-yellow-400 transition-all duration-300">Model Optimization</h3>
+              <p className="text-sm text-gray-400 leading-relaxed">
+                Obsessed with inference latency. Proficient in optimizing deep neural networks with <strong className="text-white">TensorFlow & PyTorch</strong>, utilizing Batch Normalization, Dropout, and SMOTE to maximize F1-scores while slashing execution times for <strong className="text-yellow-400">sub-second</strong> predictions.
+              </p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="glass-card glass-card-hover border-green-400/20 hover-glow-green group">
+              <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                <ShieldCheck size={80} />
+              </div>
+              <ShieldCheck className="text-green-400 mb-4" size={32} />
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-green-400 transition-all duration-300">Applied Machine Learning</h3>
+              <p className="text-sm text-gray-400 leading-relaxed">
+                Bridging research with real-world scale. Training robust <strong className="text-white">XGBoost & Random Forest</strong> models for predictive analytics, combined with <strong className="text-green-400">RAG architectures</strong> and Groq LLMs to deliver intelligent, context-aware web applications.
+              </p>
+            </motion.div>
+          </div>)}
         </motion.section>
 
         {/* EXPERIENCE SECTION */}
@@ -359,7 +396,7 @@ export default function Home() {
             <GitCommit className="text-[rgb(var(--accent))]" /> How I Engineer
           </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {!isAI ? (<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <motion.div variants={fadeInUp} className="glass-card glass-card-hover border-[rgba(var(--accent),0.2)] hover-glow-accent group">
               <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
                 <ShieldCheck size={100} />
@@ -399,6 +436,46 @@ export default function Home() {
               </p>
             </motion.div>
           </div>
+) : (<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <motion.div variants={fadeInUp} className="glass-card glass-card-hover border-[rgba(var(--accent),0.2)] hover-glow-accent group">
+              <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
+                <ShieldCheck size={100} />
+              </div>
+              <h4 className="text-xl font-bold text-white mb-4 relative z-10 flex items-center gap-2 group-hover:text-[rgb(var(--accent))] transition-all duration-300">
+                <span className="w-8 h-8 rounded-full bg-[rgba(var(--accent),0.2)] text-[rgb(var(--accent))] flex items-center justify-center text-sm">1</span>
+                Data Quality First
+              </h4>
+              <p className="text-sm text-gray-400 leading-relaxed relative z-10">
+                I never assume clean data. Before training models, I establish strict ETL validations and handle data imbalance using <strong className="text-[rgb(var(--accent))]">SMOTE & Class Weights</strong>. I ensure corrupted datasets and outliers are caught early in the pipeline to prevent cascading errors in predictive accuracy.
+              </p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="glass-card glass-card-hover border-[rgba(var(--accent-secondary),0.2)] hover-glow-secondary group">
+              <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
+                <Database size={100} />
+              </div>
+              <h4 className="text-xl font-bold text-white mb-4 relative z-10 flex items-center gap-2 group-hover:text-[rgb(var(--accent-secondary))] transition-all duration-300">
+                <span className="w-8 h-8 rounded-full bg-[rgba(var(--accent-secondary),0.2)] text-[rgb(var(--accent-secondary))] flex items-center justify-center text-sm">2</span>
+                Feature Engineering
+              </h4>
+              <p className="text-sm text-gray-400 leading-relaxed relative z-10">
+                Model performance is rooted in data architecture. I obsess over feature extraction, vectorizing text with <strong className="text-white">pgvector</strong>, and leveraging <strong className="text-[rgb(var(--accent-secondary))]">Pandas & NumPy</strong> for high-throughput preprocessing. I actively tune hyperparameters to maximize ROC-AUC scores without sacrificing training speed.
+              </p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="glass-card glass-card-hover border-yellow-400/20 hover-glow-yellow group">
+              <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
+                <Terminal size={100} />
+              </div>
+              <h4 className="text-xl font-bold text-white mb-4 relative z-10 flex items-center gap-2 group-hover:text-yellow-400 transition-all duration-300">
+                <span className="w-8 h-8 rounded-full bg-yellow-400/20 text-yellow-400 flex items-center justify-center text-sm">3</span>
+                Production Inference
+              </h4>
+              <p className="text-sm text-gray-400 leading-relaxed relative z-10">
+                A model in a notebook is only half the job. I take ownership of deployment by exporting optimized models (<strong className="text-white">TensorFlow, XGBoost</strong>) and integrating them into highly scalable, containerized <strong className="text-yellow-400">FastAPI/Spring Boot</strong> endpoints for sub-second, real-time predictions.
+              </p>
+            </motion.div>
+          </div>)}
         </motion.section>
 
         {/* TOP PROJECTS SECTION */}
@@ -413,8 +490,90 @@ export default function Home() {
             <Server className="text-[rgb(var(--accent-secondary))]" /> Featured Work
           </motion.h2>
 
+          {isAI ? (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Project 1 - Massive Left Box */}
+            <motion.div variants={fadeInUp} className="glass-card glass-card-hover flex-col lg:col-span-2 group/doc border-[rgba(var(--accent),0.2)] hover-glow-accent">
+              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover/doc:opacity-10 transition-opacity">
+                <BrainCircuit size={200} />
+              </div>
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex justify-between items-start mb-6">
+                  <div>
+                    <h3 className="text-4xl font-extrabold text-white mb-2">NeuroVoice</h3>
+                    <p className="text-sm text-[rgb(var(--accent))] font-mono">Python • Librosa • Keras • TensorFlow • Scikit-Learn</p>
+                  </div>
+                  <a href="https://doi.org/10.56155/978-81-975670-5-6-5" target="_blank" rel="noreferrer" className="p-3 bg-white/5 rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition-all border border-white/10">
+                    <FileText size={24} />
+                  </a>
+                </div>
+
+                <p className="text-gray-300 text-lg mb-8 leading-relaxed max-w-2xl">
+                  A deep learning neural network (MLP) with Batch Normalization and Dropout layers to classify gender from audio, achieving 99.7% accuracy on the Mozilla Common Voice dataset. Mitigated data imbalance across 1,978 examples using SMOTE.
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                  <div className="bg-black/30 p-4 rounded-xl border border-white/5">
+                    <h4 className="text-white font-bold mb-2 flex items-center gap-2"><Database size={16} className="text-[rgb(var(--accent))]" /> Feature Extraction</h4>
+                    <p className="text-sm text-gray-400">Extracted acoustic parameters utilizing Librosa to isolate MFCCs, Chroma Features, and Spectral Contrast.</p>
+                  </div>
+                  <div className="bg-black/30 p-4 rounded-xl border border-white/5">
+                    <h4 className="text-white font-bold mb-2 flex items-center gap-2"><Cpu size={16} className="text-[rgb(var(--accent-secondary))]" /> Cross-Validation</h4>
+                    <p className="text-sm text-gray-400">Validated model performance using Stratified 5-Fold Cross-Validation, outperforming traditional baseline models.</p>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-3 mt-auto">
+                  <span className="px-3 py-1 bg-[rgba(var(--accent),0.1)] border border-[rgba(var(--accent),0.2)] rounded-lg text-sm text-[rgb(var(--accent))] font-medium">Neural Networks</span>
+                  <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300">Published Paper</span>
+                  <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300">Audio Classification</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Side Stack */}
+            <div className="grid grid-cols-1 gap-6 lg:col-span-1">
+              <motion.div variants={fadeInUp} className="glass-card glass-card-hover flex-col justify-between hover-glow-white">
+                <div>
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-2xl font-bold text-white">DocBrain</h3>
+                    <a href="https://github.com/atharv-sys32/docbrain" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-all duration-300">
+                      <FaGithub size={20} />
+                    </a>
+                  </div>
+                  <p className="text-xs text-[rgb(var(--accent-secondary))] font-mono mb-3">PostgreSQL • pgvector • Groq LLM</p>
+                  <p className="text-gray-400 text-sm mb-6 leading-relaxed">
+                    Scalable Retrieval-Augmented Generation (RAG) pipeline utilizing Apache Tika for parsing and pgvector for 3072-dimensional embeddings for rapid semantic search.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-xs px-2 py-1 bg-white/5 rounded-md text-gray-300">RAG Pipeline</span>
+                  <span className="text-xs px-2 py-1 bg-white/5 rounded-md text-gray-300">Vector DB</span>
+                </div>
+              </motion.div>
+
+              <motion.div variants={fadeInUp} className="glass-card glass-card-hover flex-col justify-between hover-glow-white">
+                <div>
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-2xl font-bold text-white">Predictive Analytics</h3>
+                    <a href="https://github.com/atharv-sys32/predictive-analytics-dashboard" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-all duration-300">
+                      <FaGithub size={20} />
+                    </a>
+                  </div>
+                  <p className="text-xs text-green-400 font-mono mb-3">Python • XGBoost • Streamlit</p>
+                  <p className="text-gray-400 text-sm mb-6 leading-relaxed">
+                    Deployed an XGBoost machine learning model achieving an AUC-ROC of 0.92, processing 500k+ session records in a real-time ETL pipeline to forecast conversions.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-xs px-2 py-1 bg-white/5 rounded-md text-gray-300">ETL Pipeline</span>
+                  <span className="text-xs px-2 py-1 bg-white/5 rounded-md text-gray-300">XGBoost ML</span>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+          ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <motion.div variants={fadeInUp} className="glass-card glass-card-hover flex-col lg:col-span-2 group/doc border-[rgba(var(--accent),0.2)] hover-glow-accent">
               <div className="absolute top-0 right-0 p-8 opacity-5 group-hover/doc:opacity-10 transition-opacity">
                 <BrainCircuit size={200} />
@@ -453,9 +612,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Right Side Stack */}
             <div className="grid grid-cols-1 gap-6 lg:col-span-1">
-              {/* Project 2 */}
               <motion.div variants={fadeInUp} className="glass-card glass-card-hover flex-col justify-between hover-glow-white">
                 <div>
                   <div className="flex justify-between items-start mb-4">
@@ -475,7 +632,6 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              {/* Project 3 */}
               <motion.div variants={fadeInUp} className="glass-card glass-card-hover flex-col justify-between hover-glow-white">
                 <div>
                   <div className="flex justify-between items-start mb-4">
@@ -496,6 +652,7 @@ export default function Home() {
               </motion.div>
             </div>
           </div>
+          )}
         </motion.section>
 
         {/* EXTRA PROJECTS */}
@@ -510,8 +667,8 @@ export default function Home() {
             <Code2 className="text-yellow-400" /> More Engineering Feats
           </motion.h2>
 
+          {isAI ? (
           <div className="space-y-4">
-            {/* The Special Project */}
             <motion.div variants={fadeInUp} className="glass-card p-6 group glass-card-hover border-[rgba(var(--accent),0.3)] hover:border-[rgb(var(--accent))] hover-glow-accent">
               <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                 <Star size={100} />
@@ -532,9 +689,58 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Other repos */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {[
+                { name: "InkThink", url: "InkThink", desc: "Full-stack CMS with RBAC via JWT. Authored optimized GraphQL APIs for CRUD operations across 5 data models." },
+                { name: "ChatIO", url: "ChatIO", desc: "Real-time messaging solution supporting 1:1 and group chats. Handled 20+ concurrent users with sub-second latency." },
+                { name: "Loan Management System", url: "lms-assignment", desc: "A robust financial backend handling complex loan lifecycle processing, demonstrating secure transactional data structures and strict validation." },
+                { name: "Ecommerce-SWE", url: "Ecommerce-SWE", desc: "Scalable E-commerce architecture showcasing high-throughput transactional processing." },
+                { name: "Course-Edu", url: "Course-Edu", desc: "An educational platform tailored for streamlined course management." }
+              ].map((repo, i) => (
+                <motion.a
+                  key={i}
+                  variants={fadeInUp}
+                  href={`https://github.com/atharv-sys32/${repo.url}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="glass-card p-5 rounded-xl transition-all duration-300 flex justify-between items-start group glass-card-hover hover-glow-white"
+                >
+                  <div className="flex-1 pr-4">
+                    <h4 className="font-bold text-gray-200 group-hover:text-white transition-all duration-300 flex items-center gap-2">
+                      <FaGithub size={16} className="shrink-0" /> <span className="truncate">{repo.name}</span>
+                    </h4>
+                    <p className="text-xs text-gray-500 mt-2 leading-relaxed">{repo.desc}</p>
+                  </div>
+                  <ExternalLink size={20} className="text-gray-600 group-hover:text-white transition-all duration-300 shrink-0 mt-0.5" />
+                </motion.a>
+              ))}
+            </div>
+          </div>
+          ) : (
+          <div className="space-y-4">
+            <motion.div variants={fadeInUp} className="glass-card p-6 group glass-card-hover border-[rgba(var(--accent),0.3)] hover:border-[rgb(var(--accent))] hover-glow-accent">
+              <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Star size={100} />
+              </div>
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10">
+                <div>
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="text-xl font-bold text-white">FileShortcutter</h3>
+                    <span className="px-2 py-0.5 text-xs font-mono bg-blue-500/20 text-blue-300 rounded border border-blue-500/30">Next-Gen Engineering</span>
+                  </div>
+                  <p className="text-gray-400 text-sm max-w-3xl leading-relaxed">
+                    Built at extreme speed using <strong className="text-white">AI coding tools</strong> (Claude Code, Cursor) and modern tooling for maximum engineering velocity. Despite the rapid prototyping pace, it features a comprehensive PRD, scalable design patterns, and robust architecture, proving that AI-augmented development doesn&apos;t mean compromising on clean code.
+                  </p>
+                </div>
+                <a href="https://github.com/atharv-sys32/FileShortcutter" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-[rgb(var(--accent))] hover:text-white transition-all duration-300 shrink-0">
+                  View Repo <ExternalLink size={16} />
+                </a>
+              </div>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {[
+                { name: "predictive-analytics-dashboard", url: "predictive-analytics-dashboard", desc: "Designed a real-time ETL pipeline and XGBoost predictive ML model for user conversion forecasting." },
                 { name: "Loan Management System", url: "lms-assignment", desc: "A robust financial backend handling complex loan lifecycle processing, demonstrating secure transactional data structures and strict validation." },
                 { name: "Ecommerce-SWE", url: "Ecommerce-SWE", desc: "Scalable E-commerce architecture showcasing high-throughput transactional processing." },
                 { name: "Realtime_Object_Detection", url: "Realtime_Object_Detection", desc: "Computer Vision project leveraging ML models for sub-second object classification." },
@@ -559,6 +765,7 @@ export default function Home() {
               ))}
             </div>
           </div>
+          )}
         </motion.section>
 
         {/* EDUCATION & PUBLICATIONS */}
@@ -649,7 +856,7 @@ export default function Home() {
               <div>
                 <h4 className="text-sm font-mono text-gray-500 mb-3 uppercase tracking-wider">Languages & Frameworks</h4>
                 <div className="flex flex-wrap gap-2">
-                  {["Java", "C++", "TypeScript", "Python", "Spring Boot", "Node.js", "NestJS", "React.js", "GraphQL"].map(skill => (
+                  {(isAI ? ["Python", "C++", "Java", "PyTorch", "TensorFlow", "Scikit-Learn", "Pandas", "NumPy"] : ["Java", "C++", "TypeScript", "Python", "Spring Boot", "Node.js", "NestJS", "React.js", "GraphQL"]).map(skill => (
                     <span key={skill} className="tech-chip hover:border-[rgb(var(--accent))]">{skill}</span>
                   ))}
                 </div>
@@ -657,7 +864,7 @@ export default function Home() {
               <div>
                 <h4 className="text-sm font-mono text-gray-500 mb-3 uppercase tracking-wider">Tools & Platforms</h4>
                 <div className="flex flex-wrap gap-2">
-                  {["MongoDB", "PostgreSQL", "Kafka", "Docker", "CI/CD", "Grafana", "Datadog", "BigQuery"].map(skill => (
+                  {(isAI ? ["Docker", "Kubernetes", "Jupyter", "MLflow", "HuggingFace", "PostgreSQL", "Kafka"] : ["MongoDB", "PostgreSQL", "Kafka", "Docker", "CI/CD", "Grafana", "Datadog", "BigQuery"]).map(skill => (
                     <span key={skill} className="tech-chip hover:border-[rgb(var(--accent-secondary))]">{skill}</span>
                   ))}
                 </div>

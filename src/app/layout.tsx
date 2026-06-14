@@ -14,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Atharv Pandey | Software Engineer",
+  title: "Atharv Pandey | Portfolio",
   description: "Portfolio of Atharv Pandey. I build systems that scale.",
 };
 
