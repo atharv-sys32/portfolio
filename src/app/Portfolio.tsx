@@ -343,7 +343,7 @@ export default function Portfolio({ isAI = false }: { isAI?: boolean }) {
                     Executed <strong className="text-gray-200">Node.js v22 & Mongoose upgrades</strong>, fixed BigQuery sync pipelines, and set up Grafana cron dashboards.
                   </li>
                   <li className="bullet-list-item bullet-accent-secondary">
-                    Built internal CLI tools for automating deployment workflows and service health checks across microservices.
+                    Built health check endpoints and monitoring tooling for service reliability across microservices.
                   </li>
                 </ul>
               </div>
