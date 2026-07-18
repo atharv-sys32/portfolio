@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { FaGithub, FaLinkedin, FaNodeJs, FaReact, FaJava, FaPython, FaDocker } from "react-icons/fa";
-import { SiPostgresql, SiGraphql, SiMongodb, SiTailwindcss, SiPytorch, SiTensorflow, SiJupyter, SiPandas, SiScikitlearn, SiKeras, SiOpenai } from "react-icons/si";
+import { SiPostgresql, SiGraphql, SiMongodb, SiTailwindcss, SiPytorch, SiTensorflow, SiJupyter, SiPandas, SiScikitlearn, SiKeras, SiOpenai, SiGo } from "react-icons/si";
 
 import { Mail, ExternalLink, Code2, Terminal, Server, Star, GraduationCap, Database, FileText, Layers, BrainCircuit, ShieldCheck, Zap, GitCommit, Cpu } from "lucide-react";
 
 const FallingIcons = ({ isAI }: { isAI: boolean }) => {
-  const sweIcons = [FaNodeJs, FaReact, FaJava, FaPython, FaDocker, SiPostgresql, SiGraphql, SiMongodb, SiTailwindcss];
+  const sweIcons = [FaNodeJs, FaReact, FaJava, FaPython, FaDocker, SiPostgresql, SiGraphql, SiMongodb, SiTailwindcss, SiGo];
   const aiIcons = [FaPython, SiPytorch, SiTensorflow, SiJupyter, SiPandas, SiScikitlearn, SiKeras, SiOpenai, SiPostgresql, FaDocker];
   const icons = isAI ? aiIcons : sweIcons;
 
@@ -341,6 +341,9 @@ export default function Portfolio({ isAI = false }: { isAI?: boolean }) {
                   </li>
                   <li className="bullet-list-item bullet-accent-secondary">
                     Executed <strong className="text-gray-200">Node.js v22 & Mongoose upgrades</strong>, fixed BigQuery sync pipelines, and set up Grafana cron dashboards.
+                  </li>
+                  <li className="bullet-list-item bullet-accent-secondary">
+                    Built internal CLI tools for automating deployment workflows and service health checks across microservices.
                   </li>
                 </ul>
               </div>
@@ -856,7 +859,7 @@ export default function Portfolio({ isAI = false }: { isAI?: boolean }) {
               <div>
                 <h4 className="text-sm font-mono text-gray-500 mb-3 uppercase tracking-wider">Languages & Frameworks</h4>
                 <div className="flex flex-wrap gap-2">
-                  {(isAI ? ["Python", "C++", "Java", "PyTorch", "TensorFlow", "Scikit-Learn", "Pandas", "NumPy"] : ["Java", "C++", "TypeScript", "Python", "Spring Boot", "Node.js", "NestJS", "React.js", "GraphQL"]).map(skill => (
+                  {(isAI ? ["Python", "C++", "Java", "PyTorch", "TensorFlow", "Scikit-Learn", "Pandas", "NumPy"] : ["Go", "Java", "C++", "TypeScript", "Python", "Spring Boot", "Node.js", "NestJS", "React.js", "GraphQL"]).map(skill => (
                     <span key={skill} className="tech-chip hover:border-[rgb(var(--accent))]">{skill}</span>
                   ))}
                 </div>
